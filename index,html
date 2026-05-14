@@ -1,1 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br"></HTML>
+<head>
+  <meta charest="UTF-8">
+  <title>Minha Primeira página</title>
+</head>
+<body> 
+    <h1>Bem-vindo ao meu site</h1>
 
+<p>Este é um parágrafo sobre <strong>aprendizado</strong>.</p>
+
+<a href="https://google.com">Clique aqui para pesquisar</a>
+    </body>
+    <html>
