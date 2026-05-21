@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <title>Pokéflix | Edição Pokémon</title>
+    <title>Guiminamflix | Edição Pokémon</title>
     <style>
         /* Cores globais e reposição (reset) */
         :root {
@@ -140,3 +140,214 @@
         }
 
         .categoria h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Carrossel Horizontal */
+        .categoria-videos {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px 20px 5px;
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de rolagem personalizada */
+        .categoria-videos::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .categoria-videos::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .categoria-videos::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        /* Elementos interativos da lista */
+        .video-card {
+            flex: 0 0 auto;
+            width: 280px;
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            cursor: pointer;
+            background-color: var(--card-bg);
+        }
+
+        @media (max-width: 600px) {
+            .video-card {
+                width: 220px;
+            }
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(255, 203, 5, 0.35);
+            z-index: 10;
+        }
+
+        /* Destaque para o vídeo que está a ser reproduzido */
+        .video-card.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(255, 62, 62, 0.4);
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+        
+        /* Rodapé */
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        GUIMINAMFLIX
+        <span class="edition">Edição Poké</span>
+    </header>
+
+    <!-- Secção de Destaque Interativo -->
+    <section class="chamada">
+        <div class="chamada-texto">
+            <h1 id="main-title">Pokémon Legends: Z-A</h1>
+            <p id="main-tags">#novidades #nintendo-switch #lumiose-city</p>
+        </div>
+
+        <div class="video-container">
+            <iframe id="main-player" src="https://www.youtube.com/embed/vhojqg75-y0?si=EEv-tsY_b1B2OwKE"
+                title="Reprodutor de Vídeo Pokémon" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Outros Vídeos e Trailers -->
+    <section class="categoria">
+        <h2>Filmes, Séries e Jogos</h2>
+        <div class="categoria-videos">
+            <!-- Pokémon Legends: Z-A (Adicionado para permitir voltar ao início) -->
+            <div class="video-card active" 
+                 data-video-id="vhojqg75-y0" 
+                 data-title="Pokémon Legends: Z-A" 
+                 data-tags="#novidades #nintendo-switch #lumiose-city">
+                <img src="https://img.youtube.com/vi/vhojqg75-y0/maxresdefault.jpg" alt="Pokémon Legends: Z-A" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Pokémon Horizontes: A Série -->
+            <div class="video-card" 
+                 data-video-id="3kXgG8M0fSg" 
+                 data-title="Pokémon Horizontes: A Série" 
+                 data-tags="#anime #novas-aventuras #liko-e-roy">
+                <img src="https://img.youtube.com/vi/3kXgG8M0fSg/maxresdefault.jpg" alt="Pokémon Horizontes" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- A Concierge Pokémon -->
+            <div class="video-card" 
+                 data-video-id="y-m9Sg2vXks" 
+                 data-title="A Concierge Pokémon" 
+                 data-tags="#stop-motion #netflix #relaxante">
+                <img src="https://img.youtube.com/vi/y-m9Sg2vXks/maxresdefault.jpg" alt="A Concierge Pokémon" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Pokémon: Detetive Pikachu -->
+            <div class="video-card" 
+                 data-video-id="bILcQ_y8vE8" 
+                 data-title="Pokémon: Detetive Pikachu" 
+                 data-tags="#live-action #cinema #mistério">
+                <img src="https://img.youtube.com/vi/bILcQ_y8vE8/maxresdefault.jpg" alt="Detetive Pikachu" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Pokémon O Filme: Segredos da Selva -->
+            <div class="video-card" 
+                 data-video-id="ABy8S_LIDe4" 
+                 data-title="Pokémon O Filme: Segredos da Selva" 
+                 data-tags="#filme #koko #zarude">
+                <img src="https://img.youtube.com/vi/ABy8S_LIDe4/maxresdefault.jpg" alt="Segredos da Selva" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Mewtwo Contra-Ataca: Evolução -->
+            <div class="video-card" 
+                 data-video-id="D0zYJ1RQ-60" 
+                 data-title="Mewtwo Contra-Ataca: Evolução" 
+                 data-tags="#clássico #3d #mewtwo">
+                <img src="https://img.youtube.com/vi/D0zYJ1RQ-60/maxresdefault.jpg" alt="Mewtwo Contra-Ataca" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Guiminamflix Edição Poké. Todos os direitos reservados aos seus respetivos criadores.</p>
+    </footer>
+
+    <!-- Lógica Interativa para Troca de Vídeos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.video-card');
+            const mainPlayer = document.getElementById('main-player');
+            const mainTitle = document.getElementById('main-title');
+            const mainTags = document.getElementById('main-tags');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Remover classe ativa de todos os cartões
+                    cards.forEach(c => c.classList.remove('active'));
+                    
+                    // Adicionar classe ativa ao cartão clicado
+                    card.classList.add('active');
+
+                    // Obter dados do cartão clicado
+                    const videoId = card.getAttribute('data-video-id');
+                    const title = card.getAttribute('data-title');
+                    const tags = card.getAttribute('data-tags');
+
+                    // Efeito de transição suave de fade-out
+                    mainPlayer.style.opacity = 0;
+                    mainTitle.style.opacity = 0;
+                    mainTags.style.opacity = 0;
+
+                    setTimeout(() => {
+                        // Atualizar o iframe, título e tags
+                        mainPlayer.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+                        mainTitle.textContent = title;
+                        mainTags.textContent = tags;
+
+                        // Fade-in
+                        mainPlayer.style.opacity = 1;
+                        mainTitle.style.opacity = 1;
+                        mainTags.style.opacity = 1;
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
