@@ -1,14 +1,353 @@
 <!DOCTYPE html>
-<html lang="pt-br"></HTML>
+<html lang="pt-PT">
+
 <head>
-  <meta charest="UTF-8">
-  <title>Minha Primeira página</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Guiminamflix | Edição Pokémon</title>
+    <style>
+        /* Cores globais e reposição (reset) */
+        :root {
+            --bg-color: #111116;
+            --card-bg: #1a1a24;
+            --primary-color: #ff3e3e; /* Vermelho Pokémon */
+            --accent-color: #ffcb05;  /* Amarelo Pokémon */
+            --text-color: #f5f5f7;
+            --text-secondary: #a0a0b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Chakra Petch", sans-serif;
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+
+        /* Cabeçalho estilizado */
+        header {
+            background-color: rgba(17, 17, 22, 0.95);
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 20px 5%;
+            text-shadow: 2px 2px 0px var(--accent-color);
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .edition {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-shadow: none;
+            border: 1px solid var(--accent-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Secção de Destaque (Principal) */
+        .chamada {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding: 40px 5%;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(255, 62, 62, 0.08) 0%, rgba(17, 17, 22, 0) 100%);
+        }
+
+        @media (min-width: 900px) {
+            .chamada {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+                padding: 60px 5%;
+            }
+        }
+
+        .chamada-texto {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .chamada-texto h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            transition: opacity 0.3s ease;
+        }
+
+        .chamada-texto p {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Vídeo Principal Responsivo */
+        .video-container {
+            flex: 1.2;
+            width: 100%;
+            max-width: 640px;
+            aspect-ratio: 16/9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 62, 62, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Secção de Categorias */
+        .categoria {
+            padding: 40px 5% 20px 5%;
+        }
+
+        .categoria h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .categoria h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Carrossel Horizontal */
+        .categoria-videos {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px 20px 5px;
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de rolagem personalizada */
+        .categoria-videos::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .categoria-videos::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .categoria-videos::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        /* Elementos interativos da lista */
+        .video-card {
+            flex: 0 0 auto;
+            width: 280px;
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            cursor: pointer;
+            background-color: var(--card-bg);
+        }
+
+        @media (max-width: 600px) {
+            .video-card {
+                width: 220px;
+            }
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(255, 203, 5, 0.35);
+            z-index: 10;
+        }
+
+        /* Destaque para o vídeo que está a ser reproduzido */
+        .video-card.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(255, 62, 62, 0.4);
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+        
+        /* Rodapé */
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
-<body> 
-    <h1>Bem-vindo ao meu site</h1>
 
-<p>Este é um parágrafo sobre <strong>aprendizado</strong>.</p>
+<body>
+    <header>
+        GUIMINAMFLIX
+        <span class="edition">Edição Poké</span>
+    </header>
 
-<a href="https://google.com">Clique aqui para pesquisar</a>
-    </body>
-    <html>
+    <!-- Secção de Destaque Interativo -->
+    <section class="chamada">
+        <div class="chamada-texto">
+            <h1 id="main-title">Pokémon Legends: Z-A</h1>
+            <p id="main-tags">#novidades #nintendo-switch #lumiose-city</p>
+        </div>
+
+        <div class="video-container">
+            <iframe id="main-player" src="https://www.youtube.com/embed/vhojqg75-y0?si=EEv-tsY_b1B2OwKE"
+                title="Reprodutor de Vídeo Pokémon" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Outros Vídeos e Trailers -->
+    <section class="categoria">
+        <h2>Filmes, Séries e Jogos</h2>
+        <div class="categoria-videos">
+            <!-- Pokémon Legends: Z-A (Adicionado para permitir voltar ao início) -->
+            <div class="video-card active" 
+                 data-video-id="vhojqg75-y0" 
+                 data-title="Pokémon Legends: Z-A" 
+                 data-tags="#novidades #nintendo-switch #lumiose-city">
+                <img src="https://img.youtube.com/vi/vhojqg75-y0/maxresdefault.jpg" alt="Pokémon Legends: Z-A" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Pokémon Horizontes: A Série -->
+            <div class="video-card" 
+                 data-video-id="3kXgG8M0fSg" 
+                 data-title="Pokémon Horizontes: A Série" 
+                 data-tags="#anime #novas-aventuras #liko-e-roy">
+                <img src="https://img.youtube.com/vi/3kXgG8M0fSg/maxresdefault.jpg" alt="Pokémon Horizontes" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- A Concierge Pokémon -->
+            <div class="video-card" 
+                 data-video-id="y-m9Sg2vXks" 
+                 data-title="A Concierge Pokémon" 
+                 data-tags="#stop-motion #netflix #relaxante">
+                <img src="https://img.youtube.com/vi/y-m9Sg2vXks/maxresdefault.jpg" alt="A Concierge Pokémon" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Pokémon: Detetive Pikachu -->
+            <div class="video-card" 
+                 data-video-id="bILcQ_y8vE8" 
+                 data-title="Pokémon: Detetive Pikachu" 
+                 data-tags="#live-action #cinema #mistério">
+                <img src="https://img.youtube.com/vi/bILcQ_y8vE8/maxresdefault.jpg" alt="Detetive Pikachu" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Pokémon O Filme: Segredos da Selva -->
+            <div class="video-card" 
+                 data-video-id="ABy8S_LIDe4" 
+                 data-title="Pokémon O Filme: Segredos da Selva" 
+                 data-tags="#filme #koko #zarude">
+                <img src="https://img.youtube.com/vi/ABy8S_LIDe4/maxresdefault.jpg" alt="Segredos da Selva" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+
+            <!-- Mewtwo Contra-Ataca: Evolução -->
+            <div class="video-card" 
+                 data-video-id="D0zYJ1RQ-60" 
+                 data-title="Mewtwo Contra-Ataca: Evolução" 
+                 data-tags="#clássico #3d #mewtwo">
+                <img src="https://img.youtube.com/vi/D0zYJ1RQ-60/maxresdefault.jpg" alt="Mewtwo Contra-Ataca" onerror="this.src='https://placehold.co/600x400?text=Pokemon'"/>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Guiminamflix Edição Poké. Todos os direitos reservados aos seus respetivos criadores.</p>
+    </footer>
+
+    <!-- Lógica Interativa para Troca de Vídeos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.video-card');
+            const mainPlayer = document.getElementById('main-player');
+            const mainTitle = document.getElementById('main-title');
+            const mainTags = document.getElementById('main-tags');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Remover classe ativa de todos os cartões
+                    cards.forEach(c => c.classList.remove('active'));
+                    
+                    // Adicionar classe ativa ao cartão clicado
+                    card.classList.add('active');
+
+                    // Obter dados do cartão clicado
+                    const videoId = card.getAttribute('data-video-id');
+                    const title = card.getAttribute('data-title');
+                    const tags = card.getAttribute('data-tags');
+
+                    // Efeito de transição suave de fade-out
+                    mainPlayer.style.opacity = 0;
+                    mainTitle.style.opacity = 0;
+                    mainTags.style.opacity = 0;
+
+                    setTimeout(() => {
+                        // Atualizar o iframe, título e tags
+                        mainPlayer.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+                        mainTitle.textContent = title;
+                        mainTags.textContent = tags;
+
+                        // Fade-in
+                        mainPlayer.style.opacity = 1;
+                        mainTitle.style.opacity = 1;
+                        mainTags.style.opacity = 1;
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
