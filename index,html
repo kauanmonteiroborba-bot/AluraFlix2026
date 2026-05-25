@@ -1,4 +1,4 @@
-# AluraFlix2026
+       # AluraFlix2026
 trabalho desenvolvido nas aulas de curso técnico em AI.
 <!DOCTYPE html>
 <html lang="pt-PT">
@@ -142,3 +142,4 @@ trabalho desenvolvido nas aulas de curso técnico em AI.
         }
 
         .categoria h2::after {
+        .categoria h2:{
