@@ -1,4 +1,5 @@
-body {
+body {background: #de1212;
+background: linear-gradient(90deg, rgba(222, 18, 18, 1) 0%, rgba(222, 18, 18, 1) 0%, rgba(222, 18, 18, 1) 0%, rgba(255, 247, 13, 1) 27%, rgba(255, 247, 13, 1) 47%, rgba(255, 247, 13, 1) 50%, rgba(255, 247, 3, 1) 55%, rgba(255, 247, 3, 1) 75%, rgba(222, 18, 18, 1) 100%, rgba(255, 247, 13, 1) 67%, rgba(222, 18, 18, 1) 98%, rgba(222, 18, 18, 1) 100%, rgba(222, 18, 18, 1) 91%, rgba(222, 18, 18, 1) 96%, rgba(222, 18, 18, 1) 100%);
     color: white;
     background: black;
     margin: 0px;
